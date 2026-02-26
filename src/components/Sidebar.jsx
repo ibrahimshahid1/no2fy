@@ -28,6 +28,11 @@ function Sidebar() {
                     <span className="nav-icon">📅</span>
                     <span>Calendar</span>
                 </NavLink>
+
+                <NavLink to="/integrations" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                    <span className="nav-icon">🔗</span>
+                    <span>Integrations</span>
+                </NavLink>
             </nav>
 
             <div className="sidebar-footer" style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>

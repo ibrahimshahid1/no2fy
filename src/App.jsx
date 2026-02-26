@@ -6,6 +6,7 @@ import KanbanBoard from './components/KanbanBoard'
 import TaskList from './components/TaskList'
 import CalendarView from './components/CalendarView'
 import TaskModal from './components/TaskModal'
+import IntegrationsPanel from './components/IntegrationsPanel'
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -15,6 +16,11 @@ function App() {
   // Fetch tasks from API
   useEffect(() => {
     fetchTasks()
+
+    // Listen for task updates from integrations
+    const handleTasksUpdated = () => fetchTasks()
+    window.addEventListener('tasks-updated', handleTasksUpdated)
+    return () => window.removeEventListener('tasks-updated', handleTasksUpdated)
   }, [])
 
   const fetchTasks = async () => {
@@ -125,6 +131,7 @@ function App() {
                 onEditTask={openEditModal}
               />
             } />
+            <Route path="/integrations" element={<IntegrationsPanel />} />
           </Routes>
         </main>
 
